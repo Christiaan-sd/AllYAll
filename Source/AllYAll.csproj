@@ -33,34 +33,34 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AYA_ActiveRadiator.cs" />
-    <Compile Include="AYA_Antenna.cs" />
-    <Compile Include="AYA_AntennaRT.cs" />
-    <Compile Include="AYA_CargoBay.cs" />
     <Compile Include="AssemblyVersion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
-    <Compile Include="AYA_Drill.cs" />
-    <Compile Include="AYA_Engine.cs" />
-    <Compile Include="AYA_ModuleAnimateGeneric.cs" />
-    <Compile Include="AYA_ModuleAnimateGeneric2.cs" />
-    <Compile Include="AYA_PAW_Refresh.cs" />
-    <Compile Include="AYA_Radiator.cs" />
-    <Compile Include="AYA_RCS.cs" />
-    <Compile Include="AYA_SAS.cs" />
-    <Compile Include="AYA_Science.cs" />
-    <Compile Include="AYA_ScienceBox.cs" />
-    <Compile Include="AYA_Solar.cs" />
-    <Compile Include="AYA_FuelCell.cs" />
-    <Compile Include="DMagic.cs" />
-    <Compile Include="DMagicStuff.cs" />
-    <Compile Include="DMModuleScienceAnimateGenericStuff.cs" />
     <Compile Include="GetAssemblyInfo.cs" />
     <Compile Include="InstallChecker.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <!-- Core mod functionality -->
+    <Compile Include="AYA_Solar.cs" />
+    <Compile Include="AYA_Radiator.cs" />
+    <Compile Include="AYA_Antenna.cs" />
+    <Compile Include="AYA_Engine.cs" />
+    <Compile Include="AYA_RCS.cs" />
+    <Compile Include="AYA_SAS.cs" />
+    <Compile Include="AYA_Drill.cs" />
+    <Compile Include="AYA_CargoBay.cs" />
+    <Compile Include="AYA_FuelCell.cs" />
+    <Compile Include="AYA_ScienceBox.cs" />
+    <Compile Include="AYA_ModuleAnimateGeneric.cs" />
+    <Compile Include="AYA_ModuleAnimateGeneric2.cs" />
+    <Compile Include="AYA_ActiveRadiator.cs" />
+    <Compile Include="AYA_PAW_Refresh.cs" />
+    <!-- Hotkey system -->
+    <Compile Include="KeyBindings.cs" />
+    <Compile Include="KeyBindingsUI.cs" />
+    <Compile Include="ActionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AssemblyVersion.tt">
@@ -78,6 +78,9 @@
     <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\UnityEngine*.dll">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System" />
+    <!-- Optional mod references (commented out - only available if those mods are installed) -->
+    <!-- 
     <Reference Include="DMagic">
       <HintPath>$(KSPDIR)\GameData\DMagicOrbitalScience\Plugins\DMagic.dll</HintPath>
     </Reference>
@@ -87,19 +90,19 @@
     <Reference Include="RemoteTech">
       <HintPath>$(KSPDIR)\GameData\RemoteTech\Plugins\RemoteTech.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="NearFutureSolar">
       <HintPath>$(KSPDIR)\GameData\NearFutureSolar\Plugins\NearFutureSolar.dll</HintPath>
     </Reference>
+    -->
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>"$(DevEnvDir)\texttransform.exe" "$(ProjectDir)AssemblyVersion.tt"
-    
-</PreBuildEvent>
+    <!-- PreBuildEvent disabled for command-line builds -->
+    <!-- <PreBuildEvent>"$(DevEnvDir)\texttransform.exe" "$(ProjectDir)AssemblyVersion.tt"</PreBuildEvent> -->
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>set KSPDIR=$(KSPDIR)
+    <!-- PostBuildEvent disabled for command-line builds (manual deploy instead) -->
+    <!-- <PostBuildEvent>set KSPDIR=$(KSPDIR)
 
 IF "%25KSPDIR%25"=="" (
 
@@ -120,7 +123,7 @@ if $(ConfigurationName) == Release (
 	start /D $(SolutionDir) /WAIT buildRelease.bat $(TargetDir) $(TargetFileName) $(TargetName)
 
 )
-</PostBuildEvent>
+</PostBuildEvent> -->
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -28,7 +28,7 @@ namespace AllYAll
                     StartCoroutine(AntennaDelayedUpdatePAWMenu(p, e));
                     break;
                 case AYA_Module.rt_antenna:
-                    StartCoroutine(AntennaRTDelayedUpdatePAWMenu(p, e));
+                    // RemoteTech support disabled - AYA_AntennaRT not included
                     break;
                 case AYA_Module.fuelcell:
                     StartCoroutine(FuelCellDelayedUpdatePAWMenu(p, e));
@@ -104,6 +104,8 @@ namespace AllYAll
                     break;
             }
         }
+        
+        /*
         public IEnumerator AntennaRTDelayedUpdatePAWMenu(Part p, string e)
         {
             var thisPartAntenna = p.FindModuleImplementing<AYA_AntennaRT>();
@@ -120,6 +122,7 @@ namespace AllYAll
                     break;
             }
         }
+        */
 
         public IEnumerator FuelCellDelayedUpdatePAWMenu(Part p, string e)
         {
